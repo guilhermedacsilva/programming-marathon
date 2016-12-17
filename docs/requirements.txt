@@ -1,0 +1,15 @@
+This software is made to be used on academic programming marathons.
+
+Requirements
+
+- Create a new marathon.
+- Create the teams of students
+- Create the exercises.
+- Show the score of the teams.
+- Can define a max duration for the marathon.
+- Define available programming languages.
+- Define execution time constraints.
+- Define automated tests for the exercises.
+- The teacher can edit everything on the marathon: score, manually correct exercises, etc.
+
+
