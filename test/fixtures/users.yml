@@ -2,5 +2,5 @@
 
 one:
   name: Fernando
-  password: 123456
+  password_digest: $2a$10$rCnzFVQE9aJ7cn45iH63LO7gm8ML.kIwfay8/s1ZLd7SCREI/IRn6
   access: 1
