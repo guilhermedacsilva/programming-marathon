@@ -29,13 +29,13 @@ class UserTest < ActiveSupport::TestCase
     assert_not @user.valid?
   end
 
-  test 'password should be present' do
-    @user.password = nil
+  test 'name should be unique and case-insensitive' do
+    @user.name = 'FernanDo'
     assert_not @user.valid?
   end
 
-  test 'password should not be too long' do
-    @user.password = 'a' * 256
+  test 'password should be present' do
+    @user.password = nil
     assert_not @user.valid?
   end
 end

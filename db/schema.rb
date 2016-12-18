@@ -11,17 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161218191518) do
+ActiveRecord::Schema.define(version: 20161218224505) do
 
   create_table "users", force: :cascade do |t|
-    t.string   "name",       null: false
-    t.string   "password",   null: false
-    t.integer  "access",     null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "name",            null: false
+    t.integer  "access",          null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.string   "password_digest", null: false
   end
 
   add_index "users", ["name"], name: "index_users_on_name", unique: true
-  add_index "users", ["password"], name: "index_users_on_password"
+  add_index "users", ["password_digest"], name: "index_users_on_password_digest"
 
 end
