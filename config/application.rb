@@ -22,5 +22,9 @@ module ProgrammingMarathon
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
+
+    console do
+      ActiveRecord::Base.logger = Rails.logger = Logger.new(STDOUT)
+    end
   end
 end
