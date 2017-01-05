@@ -3,6 +3,13 @@ require 'test_helper'
 class UsersControllerTest < ActionController::TestCase
   setup do
     @user = users(:fernando)
+    log_in_as(@user)
+  end
+
+  test 'should not visit without login' do
+    logout
+    get :index
+    assert_response :redirect
   end
 
   test 'should get index' do

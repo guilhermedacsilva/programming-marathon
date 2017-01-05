@@ -13,6 +13,11 @@ class ActiveSupport::TestCase
   def log_in_as(user)
     session[:user_id] = user.id
   end
+
+  def logout
+    session[:user_id] = nil
+    cookies.delete(:user_id)
+  end
 end
 
 class ActionDispatch::IntegrationTest
@@ -20,5 +25,9 @@ class ActionDispatch::IntegrationTest
     post login_path, session: { name: user.name,
                                 password: password,
                                 remember_me: remember_me }
+  end
+
+  def logout
+    delete logout_path
   end
 end
