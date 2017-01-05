@@ -1,0 +1,8 @@
+<% if show_top_menu? && logged_in? %>
+<nav>
+    Logged in as: <%= current_user.name %>
+    <br>
+    <%= link_to 'Log out', logout_path, method: :delete %>
+    <hr>
+</nav>
+<% end %>
