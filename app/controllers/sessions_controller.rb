@@ -1,5 +1,6 @@
 class SessionsController < ApplicationController
   skip_before_action :require_login
+  before_action :redirect_if_logged_in, except: 'destroy'
 
   def new
     params[:session] = { name: '' }
@@ -47,5 +48,9 @@ class SessionsController < ApplicationController
 
   def user_params
     params.require(:user).permit(:name, :password, :password_confirmation)
+  end
+
+  def redirect_if_logged_in
+    redirect_to current_user if logged_in?
   end
 end
