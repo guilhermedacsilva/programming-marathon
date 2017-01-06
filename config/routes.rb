@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   resources :users
+  resources :marathons
+
   root 'sessions#new'
   get 'signup', to: 'sessions#signup'
   post 'signup', to: 'sessions#register'

@@ -1,0 +1,28 @@
+<div class="row">
+  <h1 class="pull-left">Marathons</h1>
+  <%= link_to 'New Marathon', new_marathon_path, class: 'btn btn-primary pull-right' %>
+</div>
+
+<div class="row">
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th class="col-3-buttons"></th>
+        <th>Name</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @marathons.each do |marathon| %>
+        <tr>
+          <td>
+            <%= link_to 'Show', marathon, class: 'btn' %>
+            <%= link_to 'Edit', edit_marathon_path(marathon), class: 'btn' %>
+            <%= link_to 'Destroy', marathon, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn' %>
+          </td>
+          <td><%= marathon.name %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
