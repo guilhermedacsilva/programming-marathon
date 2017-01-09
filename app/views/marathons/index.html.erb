@@ -1,6 +1,6 @@
 <div class="row">
   <h1 class="pull-left">Marathons</h1>
-  <%= link_to 'New Marathon', new_marathon_path, class: 'btn btn-primary pull-right' %>
+  <%= link_to 'New Marathon', new_marathon_path, class: 'btn btn-primary pull-right' if current_user.admin? %>
 </div>
 
 <div class="row">
@@ -21,6 +21,11 @@
             <%= link_to 'Destroy', marathon, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn' %>
           </td>
           <td><%= marathon.name %></td>
+        </tr>
+      <% end %>
+      <% if @marathons.empty? %>
+        <tr>
+          <td colspan="2" class="text-center">No records found</td>
         </tr>
       <% end %>
     </tbody>

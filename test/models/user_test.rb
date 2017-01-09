@@ -34,12 +34,12 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test 'name should be unique' do
-    @user.name = 'Fernando'
+    @user.name = 'Admin'
     assert_not @user.valid?
   end
 
   test 'name should be unique and case-insensitive' do
-    @user.name = 'FernanDo'
+    @user.name = 'AdmiN'
     assert_not @user.valid?
   end
 

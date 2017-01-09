@@ -2,7 +2,12 @@
 # password: 123456
 # $2a$10$rCnzFVQE9aJ7cn45iH63LO7gm8ML.kIwfay8/s1ZLd7SCREI/IRn6
 
-fernando:
-  name: fernando
+admin:
+  name: admin
   password_digest: <%= User.digest('123456') %>
   access: 1
+
+simple:
+  name: simple
+  password_digest: <%= User.digest('123456') %>
+  access: 0

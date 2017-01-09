@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  ACCESS_ADMIN = 1
+
   attr_accessor :remember_token
 
   before_save { name.downcase! }
@@ -11,6 +13,10 @@ class User < ActiveRecord::Base
   validates :password, presence: true, length: { minimum: 6 }
 
   has_secure_password
+
+  def admin?
+    access == ACCESS_ADMIN
+  end
 
   def self.digest(text)
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST : BCrypt::Engine.cost

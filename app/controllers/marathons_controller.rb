@@ -1,4 +1,7 @@
 class MarathonsController < ApplicationController
+  before_action :set_marathon, only: [:show, :edit, :update, :destroy]
+  before_action :require_admin, except: [:index, :show]
+
   def index
     @marathons = Marathon.all_openned
   end
@@ -19,5 +22,11 @@ class MarathonsController < ApplicationController
   end
 
   def destroy
+  end
+
+  private
+
+  def set_marathon
+    @marathon = Marathon.find(params[:id])
   end
 end

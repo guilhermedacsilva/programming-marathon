@@ -13,13 +13,13 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     assert_response :success
     assert_not flash.empty?
 
-    get root_path
+    get login_path
     assert flash.empty?
   end
 
   test 'login with valid information and logout' do
     post login_path, session: { name: @user.name, password: '123456' }
-    assert_redirected_to @user
+    assert_redirected_to marathons_path
     assert logged_in?
     follow_redirect!
     assert_select 'a[href=?]', logout_path
