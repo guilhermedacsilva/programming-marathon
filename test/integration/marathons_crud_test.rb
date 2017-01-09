@@ -12,13 +12,24 @@ class MarathonsCrudTest < ActionDispatch::IntegrationTest
     assert_select 'tr td:first-child', 'No records found'
   end
 
-  test 'should load one line table index' do
+  test 'should index load only openned' do
+    logout
+    log_in_as(users(:simple))
     assert Marathon.count > 1
-    my_marathon = marathons(:one)
     get marathons_path
     assert_response :success
     assert_select 'tr', 2
-    assert_select 'tr td:nth-child(2)', my_marathon.name
+    assert_select 'tr td:nth-child(2)', marathons(:one).name
+  end
+
+  test 'should index load all' do
+    count = Marathon.count
+    assert count > 1
+    get marathons_path
+    assert_response :success
+    assert_select 'tr', count + 1
+    assert_select 'td', marathons(:one).name
+    assert_select 'td', marathons(:two).name
   end
 
   test 'should not access' do

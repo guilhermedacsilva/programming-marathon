@@ -1,9 +1,9 @@
 class MarathonsController < ApplicationController
-  before_action :set_marathon, only: [:show, :edit, :update, :destroy]
   before_action :require_admin, except: [:index, :show]
+  before_action :set_marathon, only: [:show, :edit, :update, :destroy]
 
   def index
-    @marathons = Marathon.all_openned
+    @marathons = admin? ? Marathon.order(:name) : Marathon.all_openned
   end
 
   def new

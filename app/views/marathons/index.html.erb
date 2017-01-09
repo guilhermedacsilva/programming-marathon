@@ -1,13 +1,13 @@
 <div class="row">
   <h1 class="pull-left">Marathons</h1>
-  <%= link_to 'New Marathon', new_marathon_path, class: 'btn btn-primary pull-right' if current_user.admin? %>
+  <%= link_to 'New Marathon', new_marathon_path, class: 'btn btn-primary pull-right' if admin? %>
 </div>
 
 <div class="row">
   <table class="table table-bordered">
     <thead>
       <tr>
-        <th class="col-3-buttons"></th>
+        <th class="col-2-buttons"></th>
         <th>Name</th>
       </tr>
     </thead>
@@ -16,9 +16,12 @@
       <% @marathons.each do |marathon| %>
         <tr>
           <td>
-            <%= link_to 'Show', marathon, class: 'btn' %>
-            <%= link_to 'Edit', edit_marathon_path(marathon), class: 'btn' %>
-            <%= link_to 'Destroy', marathon, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn' %>
+            <%= link_to marathon, class: 'btn btn-xs btn-default' do %>
+              <span class="glyphicon glyphicon-search"></span>
+            <% end %>
+            <%= link_to marathon, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-xs btn-danger' do %>
+              <span class="glyphicon glyphicon-trash"></span>
+            <% end %>
           </td>
           <td><%= marathon.name %></td>
         </tr>
