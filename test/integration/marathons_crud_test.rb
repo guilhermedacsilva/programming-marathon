@@ -38,4 +38,19 @@ class MarathonsCrudTest < ActionDispatch::IntegrationTest
       assert_response :redirect, 'accessed delete path'
     end
   end
+
+  test 'should not create' do
+    post marathons_path, marathon: { name: 'a' }
+    assert_response :success
+    assert_select '.errors'
+  end
+
+  test 'should create' do
+    get new_marathon_path
+    assert_response :success
+    post marathons_path, marathon: { name: 'new one' }
+    assert_response :redirect
+    follow_redirect!
+    assert_select '.alert-success'
+  end
 end

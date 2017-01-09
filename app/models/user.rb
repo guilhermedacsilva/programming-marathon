@@ -3,14 +3,17 @@ class User < ActiveRecord::Base
 
   attr_accessor :remember_token
 
-  before_save { name.downcase! }
+  before_save do
+    name.strip!
+    name.downcase!
+  end
 
   validates :name,
             presence: true,
             length: { minimum: 3, maximum: 255 },
             uniqueness: { case_sensitive: false }
 
-  validates :password, presence: true, length: { minimum: 6 }
+  validates :password, length: { minimum: 6 }
 
   has_secure_password
 
