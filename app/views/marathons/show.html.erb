@@ -7,13 +7,16 @@
   <nav class="col-xs-3">
     <ul class="nav nav-pills nav-stacked">
       <li role="presentation" class="active"><%= link_to 'Overview', '#' %></li>
+      <li role="presentation"><%= link_to @marathon.started? ? 'Close' : 'Start', start_marathon_path(@marathon), method: :post %></li>
       <li role="presentation"><%= link_to 'Settings', edit_marathon_path(@marathon) %></li>
     </ul>
   </nav>
 
   <div class="col-xs-9">
-    <p>Status: <%= @marathon.started? %></p>
-    <p>Registration for this marathon: <%= @marathon.registration? %></p>
+    <div class="clearfix">
+      <p class="alert alert-<%= @marathon.started? ? 'info' : 'danger' %>">Status: <%= @marathon.started? ? 'started' : 'closed' %></p>
+      <p class="alert alert-<%= @marathon.registration? ? 'info' : 'danger' %>">Registration for this marathon: <%= @marathon.registration? ? 'open' : 'closed' %></p>
+    </div>
     <p>Exercises: <%= @exercises %></p>
     <p>Teams playing: <%= @teams %></p>
   </div>

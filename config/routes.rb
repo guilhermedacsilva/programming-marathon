@@ -1,14 +1,15 @@
 Rails.application.routes.draw do
-  resources :users
-  resources :marathons
-
   root 'sessions#new'
+
   get 'signup', to: 'sessions#signup'
   post 'signup', to: 'sessions#register'
   get 'login', to: 'sessions#new'
   post 'login', to: 'sessions#create'
   delete 'logout', to: 'sessions#destroy'
 
+  resources :users
+  resources :marathons
+  post 'marathons/:id/start', to: 'marathons#start', as: 'start_marathon'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -1,6 +1,6 @@
 class MarathonsController < ApplicationController
   before_action :require_admin, except: [:index, :show]
-  before_action :set_marathon, only: [:show, :edit, :update, :destroy]
+  before_action :set_marathon, except: [:index, :new, :create]
 
   def index
     @marathons = admin? ? Marathon.order(:name) : Marathon.all_started
@@ -26,9 +26,14 @@ class MarathonsController < ApplicationController
   end
 
   def destroy
-    Marathon.destroy(params[:id])
+    @marathon.destroy
     flash[:notice] = 'Marathon moved to trash'
     redirect_to marathons_path
+  end
+
+  def start
+    @marathon.toggle!(:started)
+    redirect_to marathon_path(@marathon)
   end
 
   private
