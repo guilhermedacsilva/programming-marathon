@@ -64,4 +64,19 @@ class MarathonsCrudTest < ActionDispatch::IntegrationTest
     follow_redirect!
     assert_select '.alert-success'
   end
+
+  test 'should see buttons' do
+    count = Marathon.count
+    get marathons_path
+    assert_select '.glyphicon-search', count
+    assert_select '.glyphicon-trash', count
+  end
+
+  test 'should not see buttons' do
+    logout
+    log_in_as(users(:simple))
+    get marathons_path
+    assert_select '.glyphicon-search', 1
+    assert_select '.glyphicon-trash', 0
+  end
 end
