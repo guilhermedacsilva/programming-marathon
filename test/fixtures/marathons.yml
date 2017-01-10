@@ -2,8 +2,8 @@
 
 one:
   name: Mara1
-  open: true
+  started: true
 
 two:
   name: Mara2
-  open: false
+  started: false

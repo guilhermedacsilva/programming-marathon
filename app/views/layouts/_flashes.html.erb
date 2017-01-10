@@ -1,10 +1,10 @@
 <% flash.each do |name, message| %>
   <% if %w(notice success).include?(name) %>
-    <div class="row alert alert-success">
+    <div class="col-xs-12 alert alert-success">
   <% elsif name == 'errors' %>
-    <div class="row alert alert-danger">
+    <div class="col-xs-12 alert alert-danger">
   <% else %>
-    <div class="row alert alter-warning">
+    <div class="col-xs-12 alert alter-warning">
   <% end %>
 
     <%= message %>

@@ -12,7 +12,7 @@ class MarathonsCrudTest < ActionDispatch::IntegrationTest
     assert_select 'tr td:first-child', 'No records found'
   end
 
-  test 'should index load only openned' do
+  test 'should index load only started' do
     logout
     log_in_as(users(:simple))
     assert Marathon.count > 1
@@ -39,12 +39,8 @@ class MarathonsCrudTest < ActionDispatch::IntegrationTest
     assert_no_difference 'Marathon.count' do
       get new_marathon_path
       assert_response :redirect, 'accessed new path'
-      get edit_marathon_path(marathon)
-      assert_response :redirect, 'accessed edit path'
       post marathons_path
       assert_response :redirect, 'accessed post path'
-      patch marathon_path(marathon)
-      assert_response :redirect, 'accessed patch path'
       delete marathon_path(marathon)
       assert_response :redirect, 'accessed delete path'
     end
@@ -73,10 +69,11 @@ class MarathonsCrudTest < ActionDispatch::IntegrationTest
   end
 
   test 'should not see buttons' do
+    count = Marathon.all_started.count
     logout
     log_in_as(users(:simple))
     get marathons_path
-    assert_select '.glyphicon-search', 1
+    assert_select '.glyphicon-search', count
     assert_select '.glyphicon-trash', 0
   end
 

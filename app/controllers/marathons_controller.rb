@@ -3,7 +3,7 @@ class MarathonsController < ApplicationController
   before_action :set_marathon, only: [:show, :edit, :update, :destroy]
 
   def index
-    @marathons = admin? ? Marathon.order(:name) : Marathon.all_openned
+    @marathons = admin? ? Marathon.order(:name) : Marathon.all_started
   end
 
   def new
@@ -12,7 +12,6 @@ class MarathonsController < ApplicationController
 
   def create
     @marathon = Marathon.new(params_marathon)
-    @marathon.open = false
     if @marathon.save
       flash[:notice] = 'Marathon created successfully'
       redirect_to @marathon
@@ -21,13 +20,9 @@ class MarathonsController < ApplicationController
     end
   end
 
-  def edit
-  end
-
-  def update
-  end
-
   def show
+    @exercises = 0
+    @teams = 0
   end
 
   def destroy
