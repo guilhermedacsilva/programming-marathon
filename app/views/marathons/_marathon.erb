@@ -1,0 +1,13 @@
+<tr>
+  <td>
+    <%= link_to marathon, class: 'btn btn-xs btn-default' do %>
+      <span class="glyphicon glyphicon-search"></span>
+    <% end %>
+    <% if admin? %>
+      <%= link_to marathon, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-xs btn-danger' do %>
+        <span class="glyphicon glyphicon-trash"></span>
+      <% end %>
+    <% end %>
+  </td>
+  <td><%= marathon.name %></td>
+</tr>

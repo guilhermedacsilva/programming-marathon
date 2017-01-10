@@ -11,7 +11,7 @@
 <div class="container-fluid container-max-size">
   <%= render 'layouts/menu' if logged_in? %>
   <%= render 'layouts/flashes' if logged_in? %>
-  <%= yield %>
+  <%= content_for?(:main) ? yield(:main) : yield %>
 </div>
 
 </body>
