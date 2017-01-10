@@ -39,13 +39,13 @@ class MarathonsCrudTest < ActionDispatch::IntegrationTest
     assert_no_difference 'Marathon.count' do
       get new_marathon_path
       assert_response :redirect, 'accessed new path'
-      get edit_marathon_path(marathon.id)
+      get edit_marathon_path(marathon)
       assert_response :redirect, 'accessed edit path'
       post marathons_path
       assert_response :redirect, 'accessed post path'
-      patch marathon_path(marathon.id)
+      patch marathon_path(marathon)
       assert_response :redirect, 'accessed patch path'
-      delete marathon_path(marathon.id)
+      delete marathon_path(marathon)
       assert_response :redirect, 'accessed delete path'
     end
   end
@@ -78,5 +78,13 @@ class MarathonsCrudTest < ActionDispatch::IntegrationTest
     get marathons_path
     assert_select '.glyphicon-search', 1
     assert_select '.glyphicon-trash', 0
+  end
+
+  test 'should delete' do
+    assert_no_difference 'Marathon.with_deleted.count' do
+      assert_difference 'Marathon.count', -1 do
+        delete marathon_path(marathons(:one))
+      end
+    end
   end
 end

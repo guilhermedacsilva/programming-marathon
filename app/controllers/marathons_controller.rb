@@ -31,6 +31,9 @@ class MarathonsController < ApplicationController
   end
 
   def destroy
+    Marathon.destroy(params[:id])
+    flash[:notice] = 'Marathon moved to trash'
+    redirect_to marathons_path
   end
 
   private
