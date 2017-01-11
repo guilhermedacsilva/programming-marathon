@@ -33,7 +33,7 @@ class MarathonsController < ApplicationController
     redirect_to marathons_path
   end
 
-  def start
+  def status
     @marathon.toggle!(:started)
     redirect_to marathon_path(@marathon)
   end

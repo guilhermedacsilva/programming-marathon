@@ -9,7 +9,7 @@ Rails.application.routes.draw do
 
   resources :users
   resources :marathons
-  post 'marathons/:id/start', to: 'marathons#start', as: 'start_marathon'
+  post 'marathons/:id/status', to: 'marathons#status', as: 'status_marathon'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

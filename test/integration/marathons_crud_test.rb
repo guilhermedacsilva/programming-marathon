@@ -84,4 +84,18 @@ class MarathonsCrudTest < ActionDispatch::IntegrationTest
       end
     end
   end
+
+  test 'should start and stop marathon' do
+    marathon = marathons(:one)
+    get marathon_path(marathon)
+    assert_select 'nav li a[href=?]', status_marathon_path(marathon)
+    assert_select 'nav li .glyphicon-remove'
+    assert marathon.started?
+
+    post status_marathon_path(marathon)
+    follow_redirect!
+    assert_select 'nav li a[href=?]', status_marathon_path(marathon)
+    assert_select 'nav li .glyphicon-ok'
+    assert_not marathon.reload.started?
+  end
 end

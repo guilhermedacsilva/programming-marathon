@@ -13,7 +13,7 @@
         <% end %>
       </li>
       <li role="presentation">
-        <%= link_to start_marathon_path(@marathon), method: :post do %>
+        <%= link_to status_marathon_path(@marathon), method: :post do %>
           <span class="glyphicon glyphicon-<%= @marathon.started? ? 'remove' : 'ok' %>"></span>
           <%= @marathon.started? ? 'Stop' : 'Start' %> marathon
         <% end %>
