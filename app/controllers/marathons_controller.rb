@@ -13,13 +13,22 @@ class MarathonsController < ApplicationController
   end
 
   def create
-    @marathon = Marathon.new(params_marathon)
+    @marathon = Marathon.new(marathon_params)
     if @marathon.save
       flash[:notice] = 'Marathon created successfully'
       redirect_to @marathon
     else
       render :new
     end
+  end
+
+  def update
+    if @marathon.update(marathon_params)
+      flash[:notice] = 'Marathon updated'
+    else
+      flash[:error] = 'Invalid marathon update'
+    end
+    redirect_to @marathon
   end
 
   def show
@@ -33,23 +42,13 @@ class MarathonsController < ApplicationController
     redirect_to marathons_path
   end
 
-  def status
-    @marathon.toggle!(:started)
-    redirect_to marathon_path(@marathon)
-  end
-
-  def register
-    @marathon.toggle!(:can_register)
-    redirect_to marathon_path(@marathon)
-  end
-
   private
 
   def set_marathon
     @marathon = Marathon.find(params[:id])
   end
 
-  def params_marathon
-    params.require(:marathon).permit(:name)
+  def marathon_params
+    params.require(:marathon).permit(:name, :started, :can_register)
   end
 end

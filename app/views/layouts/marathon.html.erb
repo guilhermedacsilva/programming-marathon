@@ -13,13 +13,13 @@
         <% end %>
       </li>
       <li role="presentation">
-        <%= link_to status_marathon_path(@marathon), method: :post, data: { confirm: 'Are you sure?' } do %>
+        <%= link_to marathon_path(@marathon, marathon: { started: !@marathon.started }), method: :put, data: {confirm: 'Are you sure?'} do %>
           <span class="glyphicon glyphicon-<%= @marathon.started ? 'remove' : 'ok' %>"></span>
           <%= @marathon.started ? 'Stop' : 'Start' %> marathon
         <% end %>
       </li>
       <li role="presentation">
-        <%= link_to register_marathon_path(@marathon), method: :post do %>
+        <%= link_to marathon_path(@marathon, marathon: { can_register: !@marathon.can_register }), method: :put do %>
           <span class="glyphicon glyphicon-<%= @marathon.can_register ? 'thumbs-down' : 'thumbs-up' %>"></span>
           <%= @marathon.can_register ? 'Close' : 'Open' %> teams registration
         <% end %>
