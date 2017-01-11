@@ -1,0 +1,14 @@
+<tr>
+  <td>
+    <%= link_to user, class: 'btn btn-xs btn-default', title: 'Show' do %>
+      <span class="glyphicon glyphicon-search"></span>
+    <% end %>
+    <% if admin? && !user.admin? %>
+      <%= link_to user, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-xs btn-danger', title: 'Delete' do %>
+        <span class="glyphicon glyphicon-trash"></span>
+      <% end %>
+    <% end %>
+  </td>
+  <td><%= user.name %></td>
+  <td><%= user.access_type %></td>
+</tr>

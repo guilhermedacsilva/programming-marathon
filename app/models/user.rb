@@ -1,21 +1,17 @@
 class User < ActiveRecord::Base
-  ACCESS_ADMIN = 1
-
+  acts_as_paranoid
+  validates_as_paranoid
+  validates_uniqueness_of_without_deleted :name
   attr_accessor :remember_token
-
-  before_save do
-    name.strip!
-    name.downcase!
-  end
-
+  before_save :fix_name
+  before_validation :fix_name
   validates :name,
             presence: true,
-            length: { minimum: 3, maximum: 255 },
-            uniqueness: { case_sensitive: false }
-
+            length: { minimum: 3, maximum: 255 }
   validates :password, length: { minimum: 6 }
-
   has_secure_password
+
+  ACCESS_ADMIN = 1
 
   def admin?
     access == ACCESS_ADMIN
@@ -46,5 +42,12 @@ class User < ActiveRecord::Base
   def authenticated?(remember_token)
     return false if remember_digest.nil?
     BCrypt::Password.new(remember_digest).is_password?(remember_token)
+  end
+
+  private
+
+  def fix_name
+    name.strip!
+    name.downcase!
   end
 end

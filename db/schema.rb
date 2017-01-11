@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170111151207) do
+ActiveRecord::Schema.define(version: 20170111172920) do
 
   create_table "marathons", force: :cascade do |t|
     t.string   "name",                         null: false
@@ -30,9 +30,9 @@ ActiveRecord::Schema.define(version: 20170111151207) do
     t.datetime "updated_at",      null: false
     t.string   "password_digest", null: false
     t.string   "remember_digest"
+    t.datetime "deleted_at"
   end
 
-  add_index "users", ["name"], name: "index_users_on_name", unique: true
   add_index "users", ["password_digest"], name: "index_users_on_password_digest"
 
 end

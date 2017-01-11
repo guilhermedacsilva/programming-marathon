@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   def index
-    @users = User.all
+    @users = User.order(:name)
   end
 
   def show
@@ -37,12 +37,12 @@ class UsersController < ApplicationController
 
   def destroy
     if @user.admin?
-      flash.now[:error] = 'The administrator can not be deleted.'
+      flash[:error] = 'The administrator can not be deleted.'
     else
       @user.destroy
-      flash.now[:notice] = 'User was successfully destroyed.'
+      flash[:notice] = 'User was successfully destroyed.'
     end
-    render :show
+    redirect_to users_path
   end
 
   private

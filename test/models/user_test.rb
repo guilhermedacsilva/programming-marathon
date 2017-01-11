@@ -34,7 +34,7 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test 'name should be unique' do
-    @user.name = 'Admin'
+    @user.name = 'admin'
     assert_not @user.valid?
   end
 
