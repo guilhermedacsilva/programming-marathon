@@ -24,7 +24,7 @@ class UserCrudTest < ActionDispatch::IntegrationTest
   end
 
   test 'should delete' do
-    user = users(:simple)
+    user = users(:team)
     delete user_path(user)
     follow_redirect!
     assert_select '.alert-success'

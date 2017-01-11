@@ -1,11 +1,10 @@
 class MarathonsController < ApplicationController
-  before_action :require_admin, except: [:index, :show]
+  before_action :require_admin
   before_action :set_marathon, except: [:index, :new, :create]
   layout 'marathon', only: [:show]
 
   def index
-    @marathons = admin? ? Marathon.order(:name) : Marathon.all_started
-    # @marathons = @marathons.any? ? @marathons : nil
+    @marathons = Marathon.order(:name)
   end
 
   def new

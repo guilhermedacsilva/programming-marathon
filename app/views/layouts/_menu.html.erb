@@ -1,5 +1,5 @@
 <% if show_top_menu? && logged_in? %>
-<nav class="navbar navbar-inverse navbar-fixed-top">
+<nav id="top-menu" class="navbar navbar-inverse navbar-fixed-top">
   <div class="container-fluid container-max-size">
       <div class="navbar-header">
         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -12,14 +12,13 @@
       </div>
       <div id="navbar" class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
-
-          <li><%= link_to 'Marathons', marathons_path %></li>
-          <li><%= link_to 'My account', user_path(current_user) %></li>
-
           <% if admin? %>
+            <li><%= link_to 'Marathons', marathons_path %></li>
+            <li><%= link_to 'My account', user_path(current_user) %></li>
             <li><%= link_to 'Users', users_path %></li>
+          <% else %>
+            <li><%= link_to 'My team', team_path %></li>
           <% end %>
-
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <li><%= link_to 'Logout', logout_path, method: :delete %></li>

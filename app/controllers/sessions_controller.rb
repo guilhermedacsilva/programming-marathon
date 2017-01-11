@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:session][:password])
       log_in(user)
       params[:session][:remember_me] == '1' ? remember(user) : forget(user)
-      redirect_to marathons_path
+      redirect_to user.admin? ? marathons_path : team_path
     else
       flash.now[:danger] = 'Invalid name/password combination'
       render :new
@@ -34,7 +34,7 @@ class SessionsController < ApplicationController
     if @user.save
       log_in(@user)
       flash[:success] = 'Registration complete'
-      redirect_to @user
+      redirect_to @user.admin? ? marathons_path : team_path
     else
       render :signup
     end

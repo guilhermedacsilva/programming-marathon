@@ -49,6 +49,6 @@ module SessionsHelper
   end
 
   def require_admin
-    redirect_to marathons_path unless admin?
+    redirect_to team_path unless admin?
   end
 end

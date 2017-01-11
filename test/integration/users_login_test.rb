@@ -19,7 +19,7 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
 
   test 'login with valid information and logout' do
     post login_path, session: { name: @user.name, password: '123456' }
-    assert_redirected_to marathons_path
+    assert_redirected_to team_path
     assert logged_in?
     follow_redirect!
     assert_select 'a[href=?]', logout_path

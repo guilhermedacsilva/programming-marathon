@@ -21,6 +21,6 @@ class UsersRegistrationTest < ActionDispatch::IntegrationTest
     end
     user = User.find_by(name: user.name)
     assert_select '.error', 0
-    assert_redirected_to "/users/#{user.id}"
+    assert_redirected_to team_path
   end
 end

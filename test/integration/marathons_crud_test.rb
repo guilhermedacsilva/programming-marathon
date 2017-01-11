@@ -12,16 +12,6 @@ class MarathonsCrudTest < ActionDispatch::IntegrationTest
     assert_select 'tr td:first-child', 'No records found'
   end
 
-  test 'should index load only started' do
-    logout
-    log_in_as(users(:simple))
-    assert Marathon.count > 1
-    get marathons_path
-    assert_response :success
-    assert_select 'tr', 2
-    assert_select 'tr td:nth-child(2)', marathons(:one).name
-  end
-
   test 'should index load all' do
     count = Marathon.count
     assert count > 1
@@ -34,7 +24,7 @@ class MarathonsCrudTest < ActionDispatch::IntegrationTest
 
   test 'should not access' do
     logout
-    log_in_as(users(:simple))
+    log_in_as(users(:team))
     marathon = Marathon.first
     assert_no_difference 'Marathon.count' do
       get new_marathon_path
@@ -66,15 +56,6 @@ class MarathonsCrudTest < ActionDispatch::IntegrationTest
     get marathons_path
     assert_select '.glyphicon-search', count
     assert_select '.glyphicon-trash', count
-  end
-
-  test 'should not see buttons' do
-    count = Marathon.all_started.count
-    logout
-    log_in_as(users(:simple))
-    get marathons_path
-    assert_select '.glyphicon-search', count
-    assert_select '.glyphicon-trash', 0
   end
 
   test 'should delete' do

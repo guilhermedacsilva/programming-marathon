@@ -7,6 +7,9 @@ Rails.application.routes.draw do
   post 'login', to: 'sessions#create'
   delete 'logout', to: 'sessions#destroy'
 
+  # TODO : CHOOSE A NICE NAME FOR TEAM START SCREEN
+  get 'team', to: 'teams#index'
+
   resources :users
   resources :marathons
 
