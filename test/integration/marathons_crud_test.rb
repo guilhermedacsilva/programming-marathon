@@ -49,7 +49,7 @@ class MarathonsCrudTest < ActionDispatch::IntegrationTest
   test 'should not create' do
     post marathons_path, marathon: { name: 'a' }
     assert_response :success
-    assert_select '.errors'
+    assert_select '.error'
   end
 
   test 'should create' do

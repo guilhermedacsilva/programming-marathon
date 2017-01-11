@@ -1,7 +1,7 @@
 <%= form_for(@marathon) do |f| %>
 
   <% if @marathon.errors.any? %>
-    <div class="errors">
+    <div class="error">
       <ul>
       <% @marathon.errors.full_messages.each do |message| %>
         <li><%= message %></li>

@@ -9,7 +9,7 @@ class UsersRegistrationTest < ActionDispatch::IntegrationTest
     assert_no_difference 'User.count' do
       post signup_path, user: { name: '', password: '', password_confirmation: '' }
     end
-    assert_select '.errors'
+    assert_select '.error'
   end
 
   test 'should register' do
@@ -20,7 +20,7 @@ class UsersRegistrationTest < ActionDispatch::IntegrationTest
                                 password_confirmation: user.password }
     end
     user = User.find_by(name: user.name)
-    assert_select '.errors', 0
+    assert_select '.error', 0
     assert_redirected_to "/users/#{user.id}"
   end
 end
