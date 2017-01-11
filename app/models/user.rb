@@ -21,6 +21,10 @@ class User < ActiveRecord::Base
     access == ACCESS_ADMIN
   end
 
+  def access_type
+    admin? ? 'Administrator' : 'Team'
+  end
+
   def self.digest(text)
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST : BCrypt::Engine.cost
     BCrypt::Password.create(text, cost: cost)
