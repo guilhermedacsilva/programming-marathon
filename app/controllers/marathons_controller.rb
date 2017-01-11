@@ -38,6 +38,11 @@ class MarathonsController < ApplicationController
     redirect_to marathon_path(@marathon)
   end
 
+  def register
+    @marathon.toggle!(:can_register)
+    redirect_to marathon_path(@marathon)
+  end
+
   private
 
   def set_marathon

@@ -3,7 +3,9 @@
 one:
   name: Mara1
   started: true
+  can_register: false
 
 two:
   name: Mara2
   started: false
+  can_register: false

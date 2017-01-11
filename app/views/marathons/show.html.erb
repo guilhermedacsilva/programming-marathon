@@ -1,6 +1,6 @@
 <div class="clearfix">
-  <p class="alert alert-<%= @marathon.started? ? 'info' : 'danger' %>">Status: <%= @marathon.started? ? 'started' : 'stopped' %></p>
-  <p class="alert alert-<%= @marathon.registration? ? 'info' : 'danger' %>">Registration for this marathon: <%= @marathon.registration? ? 'open' : 'closed' %></p>
+  <p class="alert alert-<%= @marathon.started ? 'info' : 'danger' %>">Status: <%= @marathon.started? ? 'started' : 'stopped' %></p>
+  <p class="alert alert-<%= @marathon.can_register ? 'info' : 'danger' %>">Team registration for this marathon: <%= @marathon.can_register ? 'open' : 'closed' %></p>
 </div>
 <p>Exercises: <%= @exercises %></p>
 <p>Teams playing: <%= @teams %></p>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170110170617) do
+ActiveRecord::Schema.define(version: 20170111151207) do
 
   create_table "marathons", force: :cascade do |t|
     t.string   "name",                         null: false
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 20170110170617) do
     t.datetime "updated_at",                   null: false
     t.datetime "deleted_at"
     t.boolean  "registration", default: false
+    t.boolean  "can_register", default: false
   end
 
   create_table "users", force: :cascade do |t|

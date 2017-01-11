@@ -90,12 +90,26 @@ class MarathonsCrudTest < ActionDispatch::IntegrationTest
     get marathon_path(marathon)
     assert_select 'nav li a[href=?]', status_marathon_path(marathon)
     assert_select 'nav li .glyphicon-remove'
-    assert marathon.started?
+    assert marathon.started
 
     post status_marathon_path(marathon)
     follow_redirect!
     assert_select 'nav li a[href=?]', status_marathon_path(marathon)
     assert_select 'nav li .glyphicon-ok'
-    assert_not marathon.reload.started?
+    assert_not marathon.reload.started
+  end
+
+  test 'should open and close marathon registration' do
+    marathon = marathons(:one)
+    get marathon_path(marathon)
+    assert_select 'nav li a[href=?]', register_marathon_path(marathon)
+    assert_select 'nav li .glyphicon-thumbs-up'
+    assert_not marathon.can_register
+
+    post register_marathon_path(marathon)
+    follow_redirect!
+    assert_select 'nav li a[href=?]', register_marathon_path(marathon)
+    assert_select 'nav li .glyphicon-thumbs-down'
+    assert marathon.reload.can_register
   end
 end
