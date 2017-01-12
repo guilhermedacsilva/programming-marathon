@@ -43,6 +43,11 @@ class UserTest < ActiveSupport::TestCase
     assert_not @user.valid?
   end
 
+  test 'should update' do
+    user = users(:admin)
+    assert user.save
+  end
+
   test 'password should be present' do
     @user.password = nil
     assert_not @user.valid?

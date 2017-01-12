@@ -1,0 +1,26 @@
+<div class="clearfix">
+  <h1 class="pull-left"><%= current_user.name %></h1>
+</div>
+
+<% if current_user.marathon_id? %>
+  <h4>You can enter your marathon page.</h4>
+  <%= link_to "Enter: #{current_user.marathon.name}", my_marathon_path, class: 'btn btn-primary' %>
+<% else %>
+  <h4>You have not registered for a marathon yet!</h4>
+<% end %>
+
+<hr>
+
+<% if @marathons.empty? %>
+  <h4>There is no marathon available for registration.</h4>
+<% else %>
+  <h4>Choose a marathon to register.</h4>
+  <% @marathons.each do |marathon| %>
+    <% if current_user.marathon == marathon %>
+      <%= link_to "Already registered: #{marathon.name}", '', class: 'btn btn-default' %>
+    <% else %>
+      <%= link_to "Register for: #{marathon.name}", team_path(marathon: marathon.id), method: :put, class: 'btn btn-primary' %>
+    <% end %>
+    <br>
+  <% end %>
+<% end %>
