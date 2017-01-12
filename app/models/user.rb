@@ -3,13 +3,15 @@ class User < ActiveRecord::Base
   validates_as_paranoid
   validates_uniqueness_of_without_deleted :name
   attr_accessor :remember_token
+  attr_accessor :new_password, :new_password_confirmation
   before_save :fix_name
   before_validation :fix_name
   validates :name,
             presence: true,
             length: { minimum: 3, maximum: 255 }
-  validates :password, length: { minimum: 6 }
+  validates :password, length: { minimum: 6 }, if: :password_changed?
   has_secure_password
+  belongs_to :marathon
 
   ACCESS_ADMIN = 1
 
@@ -19,6 +21,10 @@ class User < ActiveRecord::Base
 
   def access_type
     admin? ? 'Administrator' : 'Team'
+  end
+
+  def password_changed?
+    !new_password.blank? || password_digest.blank?
   end
 
   def self.digest(text)
