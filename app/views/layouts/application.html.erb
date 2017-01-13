@@ -9,8 +9,8 @@
 <body>
 
 <div class="container-fluid container-max-size">
-  <%= render 'layouts/menu' if logged_in? %>
-  <%= render 'layouts/flashes' if logged_in? %>
+  <%= render 'layouts/menu' if user_signed_in? %>
+  <%= render 'layouts/flashes' if user_signed_in? %>
   <%= content_for?(:main) ? yield(:main) : yield %>
 </div>
 

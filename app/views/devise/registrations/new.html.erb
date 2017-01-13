@@ -2,7 +2,6 @@
 
   <h2>Team Sign Up</h2>
 
-  <% if false %>
   <% if resource.errors.any? %>
     <div class="row">
       <div class="error text-left col-sm-6 col-sm-push-3">
@@ -14,9 +13,6 @@
       </div>
     </div>
   <% end %>
-  <% end %>
-
-  <%= devise_error_messages! %>
 
   <div class="row">
   <%= form_for(resource,

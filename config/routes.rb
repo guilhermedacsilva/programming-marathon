@@ -1,17 +1,11 @@
 Rails.application.routes.draw do
-  root 'sessions#new'
-
-  get 'signup', to: 'sessions#signup'
-  post 'signup', to: 'sessions#register'
-  get 'login', to: 'sessions#new'
-  post 'login', to: 'sessions#create'
-  delete 'logout', to: 'sessions#destroy'
+  devise_for :users
+  root 'teams#index'
 
   get 'team', to: 'teams#index'
   put 'team', to: 'teams#register_for_marathon'
   get 'my_marathon', to: 'teams#my_marathon'
 
-  resources :users
   resources :marathons
 
   # The priority is based upon order of creation: first created -> highest priority.
