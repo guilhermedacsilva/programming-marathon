@@ -1,4 +1,4 @@
-<% if show_top_menu? && logged_in? %>
+<% if show_top_menu? && user_signed_in? %>
 <nav id="top-menu" class="navbar navbar-inverse navbar-fixed-top">
   <div class="container-fluid container-max-size">
       <div class="navbar-header">
@@ -14,14 +14,14 @@
         <ul class="nav navbar-nav">
           <% if admin? %>
             <li><%= link_to 'Marathons', marathons_path %></li>
-            <li><%= link_to 'My account', user_path(current_user) %></li>
+            <li><%= link_to 'My account', user_registration_path(current_user) %></li>
             <li><%= link_to 'Users', users_path %></li>
           <% else %>
             <li><%= link_to 'My team', team_path %></li>
           <% end %>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-          <li><%= link_to 'Logout', logout_path, method: :delete %></li>
+          <li><%= link_to 'Logout', destroy_user_session_path, method: :delete %></li>
         </ul>
       </div><!--/.nav-collapse -->
   </div>

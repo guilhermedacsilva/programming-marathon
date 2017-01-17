@@ -3,7 +3,7 @@ require 'test_helper'
 class TeamRegisterForMarathonTest < ActionDispatch::IntegrationTest
   def setup
     @user = users(:team)
-    log_in_as(@user)
+    sign_in(@user)
   end
 
   test 'should not has a marathon' do

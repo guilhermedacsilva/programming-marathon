@@ -2,7 +2,7 @@ require 'test_helper'
 
 class MarathonsCrudTest < ActionDispatch::IntegrationTest
   def setup
-    log_in_as(users(:admin))
+    sign_in(users(:admin))
   end
 
   test 'should load empty index' do
@@ -23,8 +23,8 @@ class MarathonsCrudTest < ActionDispatch::IntegrationTest
   end
 
   test 'should not access' do
-    logout
-    log_in_as(users(:team))
+    sign_out(:admin)
+    sign_in(users(:team))
     marathon = Marathon.first
     assert_no_difference 'Marathon.count' do
       get new_marathon_path

@@ -5,29 +5,8 @@ require 'rails/test_help'
 class ActiveSupport::TestCase
   # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
   fixtures :all
-
-  def logged_in?
-    !session[:user_id].nil?
-  end
-
-  def log_in_as(user)
-    session[:user_id] = user.id
-  end
-
-  def logout
-    session[:user_id] = nil
-    cookies.delete(:user_id)
-  end
 end
 
 class ActionDispatch::IntegrationTest
-  def log_in_as(user, password: '123456', remember_me: '1')
-    post login_path, session: { name: user.name,
-                                password: password,
-                                remember_me: remember_me }
-  end
-
-  def logout
-    delete logout_path
-  end
+  include Devise::Test::IntegrationHelpers
 end

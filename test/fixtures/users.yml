@@ -4,10 +4,10 @@
 
 admin:
   name: admin
-  password_digest: <%= User.digest('123456') %>
+  encrypted_password: <%= Devise::Encryptor.digest(User, '123456') %>
   access: 1
 
 team:
   name: team
-  password_digest: <%= User.digest('123456') %>
+  encrypted_password: <%= Devise::Encryptor.digest(User, '123456') %>
   access: 0

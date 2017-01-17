@@ -13,9 +13,9 @@
   <%= @user.access_type %>
 </p>
 
-<%= link_to 'Edit', edit_user_path(@user), class: 'btn btn-primary' %>
-<%= link_to 'Change password', edit_user_path(@user), class: 'btn btn-primary' %>
-<%= link_to 'Delete', user_path(@user),
+<%= link_to 'Edit', edit_user_registration_path(@user), class: 'btn btn-primary' %>
+<%= link_to 'Change password', edit_user_registration_path(@user), class: 'btn btn-primary' %>
+<%= link_to 'Delete', user_registration_path(@user),
             method: :delete,
             data: { confirm: 'Are you sure?' },
             class: 'btn btn-danger' unless !admin? || @user.admin? %>
