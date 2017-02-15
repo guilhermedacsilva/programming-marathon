@@ -7,7 +7,7 @@ class UsersRegistrationTest < ActionDispatch::IntegrationTest
     assert_select 'input[name=?]', 'user[password]'
     assert_select 'input[name=?]', 'user[password_confirmation]'
     assert_no_difference 'User.count' do
-      post new_user_registration_path,
+      post user_registration_path,
            user: { name: '', password: '', password_confirmation: '' }
     end
     assert_select '.error'
