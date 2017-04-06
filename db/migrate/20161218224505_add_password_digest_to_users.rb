@@ -1,6 +1,6 @@
 class AddPasswordDigestToUsers < ActiveRecord::Migration
   def change
-    User.delete_all
+    User.delete_all!
     remove_index :users, column: :password
     remove_column :users, :password, :string
     add_column :users, :password_digest, :string
